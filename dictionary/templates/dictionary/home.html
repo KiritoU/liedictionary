@@ -1,0 +1,133 @@
+{% extends "dictionary/base.html" %}
+{% block content %}
+    {% if words %}
+        {% for word in words %}
+            <article class="media content-section">
+            <div class="media-body">
+                <div class="article-metadata">
+                <p class="mr-2">{{ word.author }}</p>
+                </div>
+                <h4 class="word-title">
+                    <a class="article-title" href="{% url 'dictionary:word-detail' word.pk %}" >{{ word.word }}</a>
+                </h4>
+                <p class="article-content">{{ word.description }}</p>
+            </div>
+            </article>
+        {% endfor %}
+
+        {% if is_paginated %}
+
+        {% if page_obj.has_previous %}
+            <a class="btn btn-outline-info mb-4" href="?page=1">First</a>
+            <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+        {% endif %}
+
+        {% for num in page_obj.paginator.page_range %}
+            {% if page_obj.number == num %}
+            <a class="btn btn-info mb-4" href="?page={{ num }}">{{ num }}</a>
+            {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+            <a class="btn btn-outline-info mb-4" href="?page={{ num }}">{{ num }}</a>
+            {% endif %}
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+            <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.next_page_number }}">Next</a>
+            <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+        {% endif %}
+
+        {% endif %}
+    {% else %}
+        <h1>There is no word</h1>
+    {% endif %}
+{% endblock content %}
+
+{% block content-section %}
+<div class="content-section">
+    <h3>All letters</h3>
+    <p class='text-muted'>Choose your first letter.
+      <ul class="list-group">
+        <li class="list-group-item list-group-item-light">
+            <a href="?q=А" class="list-group-item-link article-title">А</a>
+        </li>
+        <li class="list-group-item list-group-item-light">
+            <a href="?q=Б" class="list-group-item-link article-title">Б</a>
+        </li>
+        <li class="list-group-item list-group-item-light">
+            <a href="?q=В" class="list-group-item-link article-title">В</a>
+        </li>
+        <li class="list-group-item list-group-item-light">
+            <a href="?q=Г" class="list-group-item-link article-title">Г</a>
+        </li>
+        <li class="list-group-item list-group-item-light">
+            <a href="?q=Е" class="list-group-item-link article-title">Е</a>
+        </li>
+        <li class="list-group-item list-group-item-light">
+            <a href="?q=Ж" class="list-group-item-link article-title">Ж</a>
+        </li>
+        <li class="list-group-item list-group-item-light">
+            <a href="?q=З" class="list-group-item-link article-title">З</a>
+        </li>
+        <li class="list-group-item list-group-item-light">
+            <a href="?q=И" class="list-group-item-link article-title">И</a>
+        </li>
+        <li class="list-group-item list-group-item-light">
+            <a href="?q=К" class="list-group-item-link article-title">К</a>
+        </li>
+        <li class="list-group-item list-group-item-light">
+            <a href="?q=Л" class="list-group-item-link article-title">Л</a>
+        </li>
+        <li class="list-group-item list-group-item-light">
+            <a href="?q=М" class="list-group-item-link article-title">М</a>
+        </li>
+        <li class="list-group-item list-group-item-light">
+            <a href="?q=Н" class="list-group-item-link article-title">Н</a>
+        </li>
+        <li class="list-group-item list-group-item-light">
+            <a href="?q=О" class="list-group-item-link article-title">О</a>
+        </li>
+        <li class="list-group-item list-group-item-light">
+            <a href="?q=П" class="list-group-item-link article-title">П</a>
+        </li>
+        <li class="list-group-item list-group-item-light">
+            <a href="?q=Р" class="list-group-item-link article-title">Р</a>
+        </li>
+        <li class="list-group-item list-group-item-light">
+            <a href="?q=С" class="list-group-item-link article-title">С</a>
+        </li>
+        <li class="list-group-item list-group-item-light">
+            <a href="?q=Т" class="list-group-item-link article-title">Т</a>
+        </li>
+        <li class="list-group-item list-group-item-light">
+            <a href="?q=У" class="list-group-item-link article-title">У</a>
+        </li>
+        <li class="list-group-item list-group-item-light">
+            <a href="?q=Ф" class="list-group-item-link article-title">Ф</a>
+        </li>
+        <li class="list-group-item list-group-item-light">
+            <a href="?q=Х" class="list-group-item-link article-title">Х</a>
+        </li>
+        <li class="list-group-item list-group-item-light">
+            <a href="?q=Ц" class="list-group-item-link article-title">Ц</a>
+        </li>
+        <li class="list-group-item list-group-item-light">
+            <a href="?q=Ч" class="list-group-item-link article-title">Ч</a>
+        </li>
+        <li class="list-group-item list-group-item-light">
+            <a href="?q=Ш" class="list-group-item-link article-title">Ш</a>
+        </li>
+        <li class="list-group-item list-group-item-light">
+            <a href="?q=Щ" class="list-group-item-link article-title">Щ</a>
+        </li>
+        <li class="list-group-item list-group-item-light">
+            <a href="?q=Э" class="list-group-item-link article-title">Э</a>
+        </li>
+        <li class="list-group-item list-group-item-light">
+            <a href="?q=Ю" class="list-group-item-link article-title">Ю</a>
+        </li>
+        <li class="list-group-item list-group-item-light">
+            <a href="?q=Я" class="list-group-item-link article-title">Я</a>
+        </li>
+      </ul>
+    </p>
+  </div>
+{% endblock content-section %}
